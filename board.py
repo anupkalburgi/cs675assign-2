@@ -24,10 +24,15 @@ class BoardGame(object):
     def move(self, name, current_position, direction):
         move_func = {"U": self.up, "D": self.down, "L":self.left, "R":self.right}
         new_position = move_func.get(direction)
+        print "In calculating new:",new_position(current_position)
         return new_position(current_position)
+
+    def player_postions(self):
+        return self.positions
 
     def check_and_update(self, name, current_position, current_direction):
         position = self.move(name, current_position, current_direction)
+        print "We got New", position
         if position:
             if position not in self.positions.values():
                 self.positions[name] = position  # if it is a new_player, it gets appended or else gets overwritten

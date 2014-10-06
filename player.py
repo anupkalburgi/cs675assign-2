@@ -5,9 +5,9 @@ import random
 
 
 class Player(object):
-    def __init__(self,name,pawn):
+    def __init__(self,name):
         self.name = name
-        self.pawn = pawn # Character choice for pawn
+        #self.pawn = pawn # Character choice for pawn
         self.current_position = Player.random_position() # Tuple (row,column)
         self.direction = "U"# L- Left, R- Right, U- up, R- R
         self.bucket = []
@@ -27,6 +27,9 @@ class Player(object):
 
     def view(self):
         return self.name,self.direction,self.current_position
+
+    def view_all(self):
+        return BoardGame().player_postions() # Connect to server, get all players May be dirctly from the shell
 
     def update_direction(self,direction):
         if len(direction) == 1 and direction.upper()  in ["U","D","L","R"]:
