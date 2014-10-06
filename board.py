@@ -1,7 +1,5 @@
 class BoardGame(object):
     def __init__(self):
-        self.rows = [] # NOT Needed Remove it later
-        self.columns = []
         self.max_length = 10
         self.positions = {} # Holds {"player_name":(row,column)}
 
@@ -23,14 +21,16 @@ class BoardGame(object):
         if current_position[1]+1 <= self.max_length:
             return current_position[0], current_position[1]+1
 
-    def move(self, current_position, direction):
-        move_func = {"U": self.up, "D": self.down, "L":self.left, "R":self.right }
+    def move(self, name, current_position, direction):
+        move_func = {"U": self.up, "D": self.down, "L":self.left, "R":self.right}
         new_position = move_func.get(direction)
         return new_position(current_position)
 
-    def check_and_update(self, name, position, current_direction):
-        if position not in self.positions.values():
-            self.positions[name] = position  # if it is a new_player, it gets appended or else gets overwritten
-            return self.positions.get(name)
-        else:
-            raise ValueError("We already have some one at {0}, Try going somewhere else".format(position))
+    def check_and_update(self, name, current_position, current_direction):
+        position = self.move(name, current_position, current_direction)
+        if position:
+            if position not in self.positions.values():
+                self.positions[name] = position  # if it is a new_player, it gets appended or else gets overwritten
+                return self.positions.get(name)
+
+        raise ValueError("We already have some one at {0}, Try going somewhere else".format(position))
