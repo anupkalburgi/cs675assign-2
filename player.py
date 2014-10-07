@@ -10,7 +10,7 @@ class Player(object):
         #self.pawn = pawn # Character choice for pawn
         self.current_position = Player.random_position() # Tuple (row,column)
         self.direction = "U"# L- Left, R- Right, U- up, R- R
-        self.bucket = []
+        self.bucket =0
 
 
     @staticmethod
@@ -26,7 +26,7 @@ class Player(object):
             return None
 
     def view(self):
-        return self.name,self.direction,self.current_position
+        return self.name,self.direction,self.current_position,self.bucket
 
     def view_all(self):
         return BoardGame().player_postions() # Connect to server, get all players May be dirctly from the shell

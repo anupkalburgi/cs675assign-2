@@ -8,7 +8,8 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
 
     def process_request(self,action,data):
         actions_map = {"check_and_update":self.server.board.check_and_update,
-                       "postions":self.server.board.player_postions}
+                       "postions":self.server.board.player_postions,
+                       "pickup": self.server.board.pickup}
         func = actions_map.get(action)
         return func(*data)
 

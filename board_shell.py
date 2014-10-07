@@ -48,7 +48,16 @@ class GameShell(cmd.Cmd):
         request = {"action":'check_and_update',
                 "data":[ self.player.name,self.player.current_position,self.player.direction] }
         response = self._execute(request)
-        self.player.current_position = response
+
+        if len(response) != 2:
+            print response
+
+        else:
+            if response[0] != None:
+                self.player.current_position = response[0]
+            if response[1] != None:
+                print response[1]
+
         print self.player.current_position
 
     def do_show(self, args):#Connect to the server, get the positions array that is it.
@@ -57,6 +66,16 @@ class GameShell(cmd.Cmd):
             print self._execute(request)
         else:
             print self.player.view()
+
+    def do_pickup(self, args=None):
+        request = {"action":"pickup",
+                   "data": [self.player.current_position]}
+        resp = self._execute(request)
+        if resp == "treasure":
+            self.player.bucket = +1
+            print "Picked Up!! Move on"
+        else:
+            print resp
 
     def do_turn(self, direction):
         if direction.upper() in ["U","D","R","L"]:
