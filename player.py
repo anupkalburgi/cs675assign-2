@@ -28,9 +28,6 @@ class Player(object):
     def view(self):
         return self.name,self.direction,self.current_position,self.bucket
 
-    def view_all(self):
-        return BoardGame().player_postions() # Connect to server, get all players May be dirctly from the shell
-
     def update_direction(self,direction):
         if len(direction) == 1 and direction.upper()  in ["U","D","L","R"]:
             self.direction = direction.upper()
