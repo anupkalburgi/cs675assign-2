@@ -54,7 +54,7 @@ class BoardGame(object):
             return message
         if tuple(postion) in self.treasure:
             self.treasure.remove(tuple(postion))
-            return "TA"
+            return postion, "TA"
 
 
     def check_and_update(self, name, current_position, current_direction):
@@ -62,6 +62,7 @@ class BoardGame(object):
         if position:
             if position not in self.positions.values():
                 self.positions[name] = position  # if it is a new_player, it gets appended or else gets overwritten
+                print self.treasure
                 return self.positions.get(name)
         message = "OCC"
         return message

@@ -36,19 +36,20 @@ class Client( object ):
 def play_game(player):
     player.update_direction(random.choice(["U","D","R","L"]))
 
-    for i in range(1,10):
+    for i in range(1,20):
         client = Client()
-        request = {"action":'check_and_update',
-               "data":[player.name, player.current_position, player.direction] }
+        request = {"action":'check_and_update',"data":[player.name, player.current_position, player.direction] }
         response = client.execute(request)
         if response != "OCC":
-            print response[0]
+            print response
             if response[0] is not None:
                 player.current_position = response[0]
-            if response[1] != None:
-                request = {"action":"pickup","data": [player.current_position]}
+            if response[1] == "TA":
                 print "Trying to pick up the treasure"
-                response = client.execute(request)
+                client = Client()
+                pick_request = {"action":"pickup","data": [player.current_position]}
+                print pick_request
+                response = client.execute(pick_request)
                 if response == "TA":
                     player.bucket = +1
 
@@ -60,18 +61,17 @@ def play_game(player):
 # player = Player("i")
 # player = play_game(player)
 # play_game(player)
-# def test_ply():
-#     player = Player(str(random.randint(1,10)))
-#     play_game(player)
-#     print player.bucket
+def test_ply():
+    player = Player(str(random.randint(1,10)))
+    play_game(player)
+    print player.bucket
 
-player = Player("i")
-play_game(player)
+# player = Player("i")
+# play_game(player)
 
-#test_ply()
-# for i in range(1,10):
-#     t = threading.Thread(name='my_service', target=test_ply)
-#     t.start()
+for i in range(1,20):
+    t = threading.Thread(name='my_service', target=test_ply )
+    t.start()
 
 
 

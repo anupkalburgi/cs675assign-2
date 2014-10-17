@@ -35,7 +35,7 @@ class GameShell(cmd.Cmd):
 
     def do_pickup(self, args=None):
         resp = self.board.pickup(self.player.current_position)
-        if resp == "treasure":
+        if resp[1] == "TA":
             self.player.bucket = +1
             print "Picked Up!! Move on"
         else:

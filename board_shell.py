@@ -49,8 +49,8 @@ class GameShell(cmd.Cmd):
                 "data":[ self.player.name,self.player.current_position,self.player.direction] }
         response = self._execute(request)
 
-        if len(response) != 2:
-            print response
+        if response == "OCC":
+            print "Occuppied"
 
         else:
             if response[0] != None:
@@ -71,7 +71,7 @@ class GameShell(cmd.Cmd):
         request = {"action":"pickup",
                    "data": [self.player.current_position]}
         resp = self._execute(request)
-        if resp == "treasure":
+        if resp == "TA":
             self.player.bucket = +1
             print "Picked Up!! Move on"
         else:

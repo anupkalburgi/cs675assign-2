@@ -17,13 +17,11 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
         self.data = self.request.recv(1024).strip()
         #print("{0} wrote:".format(self.client_address[0]))
         request = json.loads(self.data)
-        print request
-        print "-------"
         action =  request.get("action")
         data = request.get("data")
         response = self.process_request(action, data)
         resp = json.dumps({"resp": response })
-        print "Response",resp
+        print request,resp
         self.request.sendall(resp)
 
 if __name__ == "__main__":
