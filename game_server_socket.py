@@ -14,15 +14,17 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
         return func(*data)
 
     def handle(self):
-        self.data = self.request.recv(4096).strip()
-        print("{0} wrote:".format(self.client_address[0]))
+        self.data = self.request.recv(1024).strip()
+        #print("{0} wrote:".format(self.client_address[0]))
         request = json.loads(self.data)
+        print request
+        print "-------"
         action =  request.get("action")
         data = request.get("data")
         response = self.process_request(action, data)
-        print server.board.positions
-        #response = {"a":1,"b":2,"c":3}
-        self.request.sendall(json.dumps(response))
+        resp = json.dumps({"resp": response })
+        print "Response",resp
+        self.request.sendall(resp)
 
 if __name__ == "__main__":
     HOST, PORT = "localhost", 9999

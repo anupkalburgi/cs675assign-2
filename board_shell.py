@@ -42,7 +42,7 @@ class GameShell(cmd.Cmd):
         c= Client()
         request = json.dumps(request)
         response= c.make_request(request)
-        return json.loads(response)
+        return json.loads(response)['resp']
 
     def do_move(self, args):
         request = {"action":'check_and_update',
