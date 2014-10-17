@@ -41,14 +41,11 @@ def play_game(player):
         request = {"action":'check_and_update',"data":[player.name, player.current_position, player.direction] }
         response = client.execute(request)
         if response != "OCC":
-            print response
             if response[0] is not None:
                 player.current_position = response[0]
             if response[1] == "TA":
-                print "Trying to pick up the treasure"
                 client = Client()
                 pick_request = {"action":"pickup","data": [player.current_position]}
-                print pick_request
                 response = client.execute(pick_request)
                 if response == "TA":
                     player.bucket = +1

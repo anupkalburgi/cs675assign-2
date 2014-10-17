@@ -1,0 +1,37 @@
+The Runtime numbers runs are given in file rmi_socket_runtime.txt
+
+Given that treasure and players direction are random, the comparison must be fair enough (Just to say so,
+i am not so sure if that is how fairness is brought in)
+
+
+Analysis in terms of Time consumed:
+-----------------------------------
+        Board Game size - 10 x 10
+        Number of players simulated - 20
+        Number of moves simulated - 20
+
+        Both Sockets and RMI ended taking same amount of time(real time) for execution on an average.
+
+
+        Possible explanation for this:
+        ------------------------------
+        Before starting this experiment i expected sockets to be much faster than what RMI could be.Reasons why i thought so
+        was RMI doing socket + serialization + some_other_stuff, and sockets talking directly with no magic.
+
+        But then I realized implementation in case of socket needs to be handled very carefully and to a great detail
+        to get it right,but in case of RMI most of the low level details are handled and optimized for us.
+
+        Sockets: In my code I am using json to serialize and deserialize the communication between client and the server.
+                 Might be plain text with less context could have served me better in terms of speed.
+
+        RMI: Also in this case for RMI I am not using any lookup server, as there is only one server.
+             That is one more place where time could have been possiblly gone up, but this cannot be taken as a parameter
+             as socket part of the code also not using any lookup mechanism
+
+
+Analysis in terms of Development time consumed:
+----------------------------------------------
+        I thought even this should be one of the parmater (though it does not make much sense in this context)
+
+        Sockets -  more number of lines of code, changes hard to implement( like Arguments structure etc)
+        RMI - Less number of lines of code, harder to debug remote exceptions.

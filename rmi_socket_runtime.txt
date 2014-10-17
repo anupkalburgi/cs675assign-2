@@ -1,0 +1,40 @@
+Socket: 
+real    0m0.394s
+user    0m0.161s
+sys 0m0.165s
+assign2->$
+real    0m0.451s
+user    0m0.161s
+sys 0m0.169s
+assign2->$
+real    0m0.312s
+user    0m0.161s
+sys 0m0.166s
+assign2->$
+real    0m0.492s
+user    0m0.164s
+sys 0m0.161s
+
+
+
+RMI:
+real    0m0.357s
+user    0m0.215s
+sys 0m0.128s
+assign2->$
+real    0m0.333s
+user    0m0.217s
+sys 0m0.130s
+assign2->$
+real    0m0.334s
+user    0m0.217s
+sys 0m0.127s
+assign2->$
+real    0m0.326s
+user    0m0.215s
+sys 0m0.129s
+assign2->$
+real    0m0.354s
+user    0m0.223s
+sys 0m0.129s
+assign2->$

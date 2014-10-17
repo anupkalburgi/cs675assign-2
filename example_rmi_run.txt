@@ -1,0 +1,23 @@
+time python rmi_client_test.py
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+real    0m0.341s
+user    0m0.220s
+sys 0m0.143s
